@@ -104,7 +104,8 @@ namespace TestProject1
 
             dbSet.As<IDbAsyncEnumerable<T>>()
                 .Setup(m => m.GetAsyncEnumerator())
-                .Returns(new DbAsyncEnumerator<T>(queryable.GetEnumerator()));
+                .Returns(()=>
+                new DbAsyncEnumerator<T>(queryable.GetEnumerator()));
 
 
             dbSet.As<IQueryable<T>>()
